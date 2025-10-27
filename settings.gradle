@@ -1,0 +1,6 @@
+rootProject.name = 'toy-csms'
+
+include 'service'
+include 'service:billing'
+include 'service:csms'
+include 'service:notification'
