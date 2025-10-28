@@ -5,21 +5,21 @@ import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 
-import me.jwjung.csms.handler.HelloHandler;
+import me.jwjung.csms.ocpp.adapter.OcppHandler;
 
 @Configuration
 @EnableWebSocket
 public class WebSocketConfig implements WebSocketConfigurer {
 
-	private final HelloHandler helloHandler;
+	private final OcppHandler ocppHandler;
 
-	public WebSocketConfig(final HelloHandler helloHandler) {
-		this.helloHandler = helloHandler;
+	public WebSocketConfig(final OcppHandler ocppHandler) {
+		this.ocppHandler = ocppHandler;
 	}
 
 	@Override
 	public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-		registry.addHandler(helloHandler, "/ws")
+		registry.addHandler(ocppHandler, "/ws")
 				.setAllowedOrigins("*");
 	}
 }
