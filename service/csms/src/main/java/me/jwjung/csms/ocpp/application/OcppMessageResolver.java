@@ -24,6 +24,7 @@ public class OcppMessageResolver {
 		if (clazz == null) {
 			return Optional.empty();
 		}
-		return Optional.of(DataSerializer.deserialize(ocppMessage.getPayload(), clazz));
+		Object payload = ocppMessage.getPayload();
+		return Optional.of(DataSerializer.deserialize(payload, clazz));
 	}
 }

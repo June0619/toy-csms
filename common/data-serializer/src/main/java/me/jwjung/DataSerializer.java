@@ -17,6 +17,7 @@ public class DataSerializer {
 	private static ObjectMapper initialize() {
 		return new ObjectMapper()
 				.registerModule(new JavaTimeModule())
+				.registerModule(new KstLocalDateTimeModule())
 				.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 	}
 

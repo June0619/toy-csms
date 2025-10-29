@@ -1,25 +1,16 @@
 package me.jwjung.csms.ocpp.domain.payload;
 
-import java.time.LocalDateTime;
-import java.util.List;
-
+import lombok.ToString;
 import me.jwjung.csms.ocpp.domain.CorePayload;
+import me.jwjung.csms.ocpp.domain.EventType;
 
+@ToString
 public class MeterValue implements CorePayload {
-    List<MeterValuePayload> meterValuePayloads;
 
-    static class MeterValuePayload {
-        LocalDateTime timestamp;
-        List<SampledValue> sampledValue;
-    }
+    private Long chargingAmount;
 
-    public static class SampledValue {
-        String value;
-        String context;
-        String format;
-        String measurand;
-        String phase;
-        String location;
-        String unit;
+    @Override
+    public EventType getType() {
+        return EventType.MeterValue;
     }
 }
