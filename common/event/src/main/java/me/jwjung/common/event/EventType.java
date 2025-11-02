@@ -14,11 +14,11 @@ import me.jwjung.common.event.payload.MeterValueChangedEventPayload;
 @RequiredArgsConstructor
 public enum EventType {
 
-	ARTICLE_CREATED(ChargingSessionCompletedEventPayload.class, Topic.CHARGING_SESSION_COMPLETED),
-	ARTICLE_UPDATED(MeterValueChangedEventPayload.class, Topic.METER_VALUE_RECEIVED),
-	ARTICLE_DELETED(PaymentFailedEventPayload.class, Topic.PAYMENT_FAILED),
-	COMMENT_CREATED(StartTransactionEventPayload.class, Topic.START_TRANSACTION),
-	COMMENT_DELETED(StopTransactionEventPayload.class, Topic.STOP_TRANSACTION);
+	CHARGING_SESSION_COMPLETED(ChargingSessionCompletedEventPayload.class, Topic.CHARGING_SESSION_COMPLETED),
+	PAYMENT_FAILED(PaymentFailedEventPayload.class, Topic.PAYMENT_FAILED),
+	METER_VALUE_CHANGED(MeterValueChangedEventPayload.class, Topic.CSMS_TRANSACTION),
+	START_TRANSACTION(StartTransactionEventPayload.class, Topic.CSMS_TRANSACTION),
+	STOP_TRANSACTION(StopTransactionEventPayload.class, Topic.CSMS_TRANSACTION);
 
 	private final Class<? extends EventPayload> payloadClass;
 	private final String topic;
@@ -33,11 +33,9 @@ public enum EventType {
 	}
 
 	public static class Topic {
-		public static final String CHARGING_SESSION_COMPLETED = "charging.session.completed";
-		public static final String PAYMENT_FAILED = "billing.payment.failed";
-		public static final String METER_VALUE_RECEIVED = "csms.meter.value.received";
-		public static final String START_TRANSACTION = "csms.transaction.started";
-		public static final String STOP_TRANSACTION = "csms.transaction.stopped";
+		public static final String CHARGING_SESSION_COMPLETED = "charging.session";
+		public static final String PAYMENT_FAILED = "billing.payment";
+		public static final String CSMS_TRANSACTION = "csms.transaction";
 	}
 
 }

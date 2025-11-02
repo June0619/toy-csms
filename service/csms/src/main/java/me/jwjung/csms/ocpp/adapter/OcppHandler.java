@@ -32,9 +32,7 @@ public class OcppHandler extends TextWebSocketHandler {
 	protected void handleTextMessage(WebSocketSession session, TextMessage originalMessage) {
 		textMessageResolver.resolve(originalMessage)
 				.ifPresentOrElse(this::handleMessage,
-						() -> {
-							log.error("not supported message");
-						});
+						() -> log.error("not supported message"));
 	}
 
 	@Override

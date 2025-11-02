@@ -3,4 +3,6 @@ package me.jwjung.common.event.payload;
 import me.jwjung.common.event.EventPayload;
 
 public class MeterValueChangedEventPayload implements EventPayload {
+	private String transactionId;
+	private Double chargedAmount;
 }

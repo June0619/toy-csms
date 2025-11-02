@@ -15,6 +15,6 @@ public class StartTransactionPayload implements CorePayload {
 
     @Override
     public MessageType getType() {
-        return MessageType.StopTransaction;
+        return MessageType.StartTransaction;
     }
 }

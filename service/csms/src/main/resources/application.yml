@@ -1,0 +1,7 @@
+server:
+  port: 9010
+spring:
+  application:
+    name: csms
+  kafka:
+    bootstrap-servers: localhost:9092
