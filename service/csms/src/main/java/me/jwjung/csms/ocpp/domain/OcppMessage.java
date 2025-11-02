@@ -2,21 +2,21 @@ package me.jwjung.csms.ocpp.domain;
 
 import lombok.Getter;
 import lombok.ToString;
+import me.jwjung.csms.ocpp.domain.payload.CorePayload;
 
 @Getter
 @ToString
-public class OcppMessage {
+public class OcppMessage<T extends CorePayload> {
 	private Integer code;
 	private String sessionId;
-	private EventType eventType;
-	private Object payload;
+	private MessageType messageType;
+	private T payload;
 
-	public OcppMessage(Integer code, String sessionId, String eventType, Object payload) {
+	public OcppMessage(Integer code, String sessionId, MessageType messageType, T payload) {
 		this.code = code;
 		this.sessionId = sessionId;
-		this.eventType = EventType.valueOf(eventType);
+		this.messageType = messageType;
 		this.payload = payload;
 	}
-
 
 }

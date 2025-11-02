@@ -1,5 +1,9 @@
 ### TEST WebSocket Request
 WEBSOCKET ws://localhost:8080/ws
+Content-Type: application/json
 
-Hello, Server!
+[2, "custom-001", "Authorize", {
+      "idTag": "12312312312"
+    }
+]
 ###

@@ -3,11 +3,10 @@ package me.jwjung.csms.ocpp.domain.payload;
 import java.time.LocalDateTime;
 
 import lombok.Data;
-import me.jwjung.csms.ocpp.domain.CorePayload;
-import me.jwjung.csms.ocpp.domain.EventType;
+import me.jwjung.csms.ocpp.domain.MessageType;
 
 @Data
-public class StartTransaction implements CorePayload {
+public class StartTransactionPayload implements CorePayload {
     private int connectorId;
     private String idTag;
     private LocalDateTime timestamp;
@@ -15,7 +14,7 @@ public class StartTransaction implements CorePayload {
     private String transactionId;
 
     @Override
-    public EventType getType() {
-        return EventType.StopTransaction;
+    public MessageType getType() {
+        return MessageType.StopTransaction;
     }
 }
