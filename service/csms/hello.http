@@ -4,7 +4,7 @@ Content-Type: application/json
 
 [2, "custom-001", "StartTransaction", {
       "connectorId": 1,
-      "idTage": "test-1234",
+      "idTag": "test-1234",
       "timestamp": "2024-06-01T12:00:00Z",
         "meterStart": 0,
         "transactionId": "20251102001"

@@ -4,7 +4,7 @@ import lombok.ToString;
 import me.jwjung.csms.ocpp.domain.MessageType;
 
 @ToString
-public class MeterValuePayload implements CorePayload {
+public class MeterValueOcppPayload implements CorePayload {
 
     private Double chargingAmount;
 

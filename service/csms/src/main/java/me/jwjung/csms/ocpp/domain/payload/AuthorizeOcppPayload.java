@@ -4,7 +4,7 @@ import lombok.Data;
 import me.jwjung.csms.ocpp.domain.MessageType;
 
 @Data
-public class AuthorizePayload implements CorePayload {
+public class AuthorizeOcppPayload implements CorePayload {
 	private String idTag;
 
 	@Override

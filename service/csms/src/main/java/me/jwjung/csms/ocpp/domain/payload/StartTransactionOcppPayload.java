@@ -6,16 +6,15 @@ import lombok.Data;
 import me.jwjung.csms.ocpp.domain.MessageType;
 
 @Data
-public class StopTransactionPayload implements CorePayload {
+public class StartTransactionOcppPayload implements CorePayload {
+    private int connectorId;
     private String idTag;
-    private Integer meterStop;
-    private String reason;
     private LocalDateTime timestamp;
-    private long transactionId;
-    private MeterValuePayload transactionData;
+    private int meterStart;
+    private String transactionId;
 
     @Override
     public MessageType getType() {
-        return MessageType.StopTransaction;
+        return MessageType.StartTransaction;
     }
 }

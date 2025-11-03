@@ -4,18 +4,18 @@ import org.springframework.stereotype.Component;
 
 import me.jwjung.csms.ocpp.domain.MessageType;
 import me.jwjung.csms.ocpp.domain.OcppMessage;
-import me.jwjung.csms.ocpp.domain.payload.MeterValuePayload;
+import me.jwjung.csms.ocpp.domain.payload.MeterValueOcppPayload;
 
 @Component
-public class MeterValuePayloadHandler implements PayloadHandler<MeterValuePayload> {
+public class MeterValuePayloadHandler implements PayloadHandler<MeterValueOcppPayload> {
 
 	@Override
-	public void handle(OcppMessage<MeterValuePayload> ocppMessage) {
+	public void handle(OcppMessage<MeterValueOcppPayload> ocppMessage) {
 
 	}
 
 	@Override
-	public boolean isSupport(OcppMessage<MeterValuePayload> ocppMessage) {
+	public boolean isSupport(OcppMessage<MeterValueOcppPayload> ocppMessage) {
 		return MessageType.MeterValue == ocppMessage.getMessageType();
 	}
 }

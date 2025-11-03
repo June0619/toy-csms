@@ -2,19 +2,19 @@ package me.jwjung.csms.ocpp.domain;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import me.jwjung.csms.ocpp.domain.payload.AuthorizePayload;
+import me.jwjung.csms.ocpp.domain.payload.AuthorizeOcppPayload;
 import me.jwjung.csms.ocpp.domain.payload.CorePayload;
-import me.jwjung.csms.ocpp.domain.payload.MeterValuePayload;
-import me.jwjung.csms.ocpp.domain.payload.StartTransactionPayload;
-import me.jwjung.csms.ocpp.domain.payload.StopTransactionPayload;
+import me.jwjung.csms.ocpp.domain.payload.MeterValueOcppPayload;
+import me.jwjung.csms.ocpp.domain.payload.StartTransactionOcppPayload;
+import me.jwjung.csms.ocpp.domain.payload.StopTransactionOcppPayload;
 
 @Slf4j
 @Getter
 public enum MessageType {
-	Authorize(AuthorizePayload.class),
-	MeterValue(MeterValuePayload.class),
-	StartTransaction(StartTransactionPayload.class),
-	StopTransaction(StopTransactionPayload.class);
+	Authorize(AuthorizeOcppPayload.class),
+	MeterValue(MeterValueOcppPayload.class),
+	StartTransaction(StartTransactionOcppPayload.class),
+	StopTransaction(StopTransactionOcppPayload.class);
 
 	private final Class<? extends CorePayload> payloadClass;
 
