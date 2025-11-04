@@ -4,6 +4,7 @@ import lombok.Getter;
 import me.jwjung.DataSerializer;
 
 @Getter
+
 public class Event<T extends EventPayload> {
 	private Long eventId;
 	private EventType type;
