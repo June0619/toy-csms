@@ -1,12 +1,18 @@
 package me.jwjung.common.event.payload;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import me.jwjung.common.event.EventPayload;
 
 @Data
-@AllArgsConstructor
 public class StopTransactionEventPayload implements EventPayload {
 	private String transactionId;
-	private Double chargingAmount;
+	private Double meterValueAmount;
+
+	public StopTransactionEventPayload(final String transactionId, final Double meterValueAmount) {
+		this.transactionId = transactionId;
+		this.meterValueAmount = meterValueAmount;
+	}
+
+	public StopTransactionEventPayload() {
+	}
 }

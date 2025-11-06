@@ -1,12 +1,18 @@
 package me.jwjung.common.event.payload;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import me.jwjung.common.event.EventPayload;
 
 @Data
-@AllArgsConstructor
 public class MeterValueChangedEventPayload implements EventPayload {
 	private String transactionId;
-	private Double chargedAmount;
+	private Double meterValueAmount;
+
+	public MeterValueChangedEventPayload() {
+	}
+
+	public MeterValueChangedEventPayload(final String transactionId, final Double meterValueAmount) {
+		this.transactionId = transactionId;
+		this.meterValueAmount = meterValueAmount;
+	}
 }

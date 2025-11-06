@@ -33,7 +33,7 @@ public class StopTransactionPayloadHandler implements PayloadHandler<StopTransac
 		log.info("payload: {}", payload);
 		final StopTransactionEventPayload eventPayload = new StopTransactionEventPayload(
 				payload.getTransactionId(),
-				payload.getChargingAmount()
+				payload.getMeterValueAmount()
 		);
 
 		Event<EventPayload> event = Event.of(

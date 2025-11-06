@@ -7,7 +7,7 @@ import me.jwjung.csms.ocpp.domain.MessageType;
 public class StopTransactionOcppPayload implements CorePayload {
     private String idTag;
     private String transactionId;
-    private Double chargingAmount;
+    private Double meterValueAmount;
 
     @Override
     public MessageType getType() {

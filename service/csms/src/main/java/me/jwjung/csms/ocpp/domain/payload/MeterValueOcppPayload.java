@@ -8,7 +8,7 @@ import me.jwjung.csms.ocpp.domain.MessageType;
 @ToString
 public class MeterValueOcppPayload implements CorePayload {
     private String transactionId;
-    private Double chargingAmount;
+    private Double meterValueAmount;
 
     @Override
     public MessageType getType() {

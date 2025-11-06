@@ -1,7 +1,5 @@
 package me.jwjung.csms.ocpp.handler;
 
-import java.time.LocalDateTime;
-
 import org.springframework.stereotype.Component;
 
 import lombok.RequiredArgsConstructor;
@@ -29,12 +27,12 @@ public class MeterValuePayloadHandler implements PayloadHandler<MeterValueOcppPa
 		log.info("payload: {}", payload);
 		MeterValueChangedEventPayload eventPayload = new MeterValueChangedEventPayload(
 				payload.getTransactionId(),
-				payload.getChargingAmount()
+				payload.getMeterValueAmount()
 		);
 
 		Event<EventPayload> event = Event.of(
 				snowflake.nextId(),
-				EventType.START_TRANSACTION,
+				EventType.METER_VALUE_CHANGED,
 				eventPayload
 		);
 		messagePublisher.publish(event);
