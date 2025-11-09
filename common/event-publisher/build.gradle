@@ -1,0 +1,6 @@
+dependencies {
+    implementation 'org.springframework.kafka:spring-kafka'
+    implementation project(':common:data-serializer')
+    implementation project(':common:snowflake')
+    implementation project(':common:event')
+}

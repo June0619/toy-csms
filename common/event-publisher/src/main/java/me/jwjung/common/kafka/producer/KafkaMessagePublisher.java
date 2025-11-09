@@ -1,4 +1,4 @@
-package me.jwjung.csms.publisher;
+package me.jwjung.common.kafka.producer;
 
 import java.util.concurrent.TimeUnit;
 

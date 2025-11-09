@@ -6,7 +6,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.jwjung.common.event.Event;
 import me.jwjung.common.event.EventType;
+import me.jwjung.common.event.payload.ChargingSessionCompletedEventPayload;
 import me.jwjung.common.event.payload.StopTransactionEventPayload;
+import me.jwjung.common.kafka.producer.KafkaMessagePublisher;
 import me.jwjung.domain.Session;
 import me.jwjung.repository.SessionRepository;
 
@@ -15,6 +17,7 @@ import me.jwjung.repository.SessionRepository;
 @RequiredArgsConstructor
 public class StopTransactionEventHandler implements EventHandler<StopTransactionEventPayload> {
 	private final SessionRepository sessionRepository;
+	private final KafkaMessagePublisher messagePublisher;
 
 	@Override
 	public void handle(Event<StopTransactionEventPayload> event) {
@@ -23,10 +26,20 @@ public class StopTransactionEventHandler implements EventHandler<StopTransaction
 				.orElseThrow(() -> new IllegalStateException("Session not found"));
 
 		session.updateNewMeterValue(payload.getMeterValueAmount());
-
-		//publish charging session stopped event
-
 		sessionRepository.delete(session);
+
+		messagePublisher.publish(Event.of(
+				event.getEventId(),
+				EventType.CHARGING_SESSION_COMPLETED,
+				new ChargingSessionCompletedEventPayload(
+						session.getTransactionId(),
+						session.getMemberUuid(),
+						session.getTotalFee(),
+						session.getCreatedAt(),
+						session.getLastUpdatedAt(),
+						session.getTotalChargedAmount()
+				)
+		));
 	}
 
 	@Override

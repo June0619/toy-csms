@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: event-publisher
+  kafka:
+    bootstrap-servers: localhost:9092

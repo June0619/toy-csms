@@ -24,6 +24,7 @@ public class Session {
 	private Double totalChargedAmount;
 	private Double meterValueAmount;
 	private Integer totalFee;
+	private LocalDateTime createdAt;
 	private LocalDateTime lastUpdatedAt;
 
 	public static Session create(String transactionId, String memberUuid) {
@@ -33,6 +34,7 @@ public class Session {
 		session.totalChargedAmount = 0.0;
 		session.meterValueAmount = 0.0;
 		session.totalFee = 0;
+		session.createdAt = LocalDateTime.now();
 		session.lastUpdatedAt = LocalDateTime.now();
 		return session;
 	}

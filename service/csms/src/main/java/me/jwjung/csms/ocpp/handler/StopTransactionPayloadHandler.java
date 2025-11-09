@@ -9,11 +9,11 @@ import me.jwjung.common.event.Event;
 import me.jwjung.common.event.EventPayload;
 import me.jwjung.common.event.EventType;
 import me.jwjung.common.event.payload.StopTransactionEventPayload;
+import me.jwjung.common.kafka.producer.KafkaMessagePublisher;
 import me.jwjung.common.snowflake.Snowflake;
 import me.jwjung.csms.ocpp.domain.MessageType;
 import me.jwjung.csms.ocpp.domain.OcppMessage;
 import me.jwjung.csms.ocpp.domain.payload.StopTransactionOcppPayload;
-import me.jwjung.csms.publisher.KafkaMessagePublisher;
 
 @Slf4j
 @Component
