@@ -1,0 +1,12 @@
+server:
+  port: 9012
+spring:
+  application:
+    name: billing
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: billing
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      enable-auto-commit: false

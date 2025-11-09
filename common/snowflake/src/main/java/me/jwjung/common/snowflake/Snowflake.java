@@ -1,50 +1,61 @@
 package me.jwjung.common.snowflake;
 
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
-public class Snowflake {
-	private static final int UNUSED_BITS = 1;
-	private static final int EPOCH_BITS = 41;
-	private static final int NODE_ID_BITS = 10;
-	private static final int SEQUENCE_BITS = 12;
+public final class Snowflake {
 
-	private static final long maxNodeId = (1L << NODE_ID_BITS) - 1;
-	private static final long maxSequence = (1L << SEQUENCE_BITS) - 1;
+	// 비트 구성
+	private static final int UNUSED = 1;
+	private static final int TIMESTAMP_BITS = 41;
+	private static final int NODE_BITS = 10;
+	private static final int SEQ_BITS = 12;
 
-	private final long nodeId = new Random().nextLong(maxNodeId + 1);
-	// UTC = 2024-01-01T00:00:00Z
-	private final long startTimeMillis = 1704067200000L;
+	// 각 필드의 최대값
+	private static final long NODE_MAX = (1L << NODE_BITS) - 1;
+	private static final long SEQ_MAX = (1L << SEQ_BITS) - 1;
 
-	private long lastTimeMillis = startTimeMillis;
-	private long sequence = 0L;
+	// 기준 시각 (UTC 2024-01-01T00:00:00Z)
+	private static final long EPOCH_START = 1704067200000L;
 
-	public synchronized long nextId() {
-		long currentTimeMillis = System.currentTimeMillis();
+	// 노드 식별자
+	private final long nodeKey;
 
-		if (currentTimeMillis < lastTimeMillis) {
-			throw new IllegalStateException("Invalid Time");
-		}
+	// 상태 값
+	private long lastTimestamp = EPOCH_START;
+	private long sequenceValue = 0L;
 
-		if (currentTimeMillis == lastTimeMillis) {
-			sequence = (sequence + 1) & maxSequence;
-			if (sequence == 0) {
-				currentTimeMillis = waitNextMillis(currentTimeMillis);
-			}
-		} else {
-			sequence = 0;
-		}
-
-		lastTimeMillis = currentTimeMillis;
-
-		return ((currentTimeMillis - startTimeMillis) << (NODE_ID_BITS + SEQUENCE_BITS))
-			| (nodeId << SEQUENCE_BITS)
-			| sequence;
+	public Snowflake() {
+		this.nodeKey = ThreadLocalRandom.current().nextLong(0, NODE_MAX + 1);
 	}
 
-	private long waitNextMillis(long currentTimestamp) {
-		while (currentTimestamp <= lastTimeMillis) {
-			currentTimestamp = System.currentTimeMillis();
+	public synchronized long nextId() {
+		long now = System.currentTimeMillis();
+
+		if (now < lastTimestamp) {
+			throw new IllegalStateException("System clock moved backwards");
 		}
-		return currentTimestamp;
+
+		if (now == lastTimestamp) {
+			sequenceValue = (sequenceValue + 1) & SEQ_MAX;
+			if (sequenceValue == 0L) {
+				now = waitForNextTick(now);
+			}
+		} else {
+			sequenceValue = 0L;
+		}
+
+		lastTimestamp = now;
+
+		return ((now - EPOCH_START) << (NODE_BITS + SEQ_BITS))
+				| (nodeKey << SEQ_BITS)
+				| sequenceValue;
+	}
+
+	private long waitForNextTick(long currentTime) {
+		long timestamp = currentTime;
+		while (timestamp <= lastTimestamp) {
+			timestamp = System.currentTimeMillis();
+		}
+		return timestamp;
 	}
 }

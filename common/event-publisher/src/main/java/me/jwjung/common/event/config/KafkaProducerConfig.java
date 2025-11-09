@@ -1,4 +1,4 @@
-package me.jwjung.common.kafka.config;
+package me.jwjung.common.event.config;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,8 +13,8 @@ import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 
 @Configuration
-@ComponentScan("me.jwjung.common.kafka")
-public class KafkaConfig {
+@ComponentScan("me.jwjung.common.event")
+public class KafkaProducerConfig {
 
 	@Value("${spring.kafka.bootstrap-servers}")
 	private String bootstrapServers;
@@ -28,6 +28,5 @@ public class KafkaConfig {
 		configProps.put(ProducerConfig.ACKS_CONFIG, "all");
 		return new KafkaTemplate<>(new DefaultKafkaProducerFactory<>(configProps));
 	}
-
 
 }

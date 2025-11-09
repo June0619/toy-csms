@@ -6,9 +6,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.jwjung.common.event.Event;
 import me.jwjung.common.event.EventType;
+import me.jwjung.common.event.core.EventHandler;
 import me.jwjung.common.event.payload.ChargingSessionCompletedEventPayload;
 import me.jwjung.common.event.payload.StopTransactionEventPayload;
-import me.jwjung.common.kafka.producer.KafkaMessagePublisher;
+import me.jwjung.common.event.producer.KafkaMessagePublisher;
 import me.jwjung.domain.Session;
 import me.jwjung.repository.SessionRepository;
 

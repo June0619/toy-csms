@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.jwjung.common.event.Event;
 import me.jwjung.common.event.EventType;
+import me.jwjung.common.event.core.EventHandler;
 import me.jwjung.common.event.payload.StartTransactionEventPayload;
 import me.jwjung.domain.Session;
 import me.jwjung.repository.SessionRepository;

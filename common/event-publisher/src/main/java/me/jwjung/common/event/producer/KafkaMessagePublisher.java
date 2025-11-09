@@ -1,4 +1,4 @@
-package me.jwjung.common.kafka.producer;
+package me.jwjung.common.event.producer;
 
 import java.util.concurrent.TimeUnit;
 

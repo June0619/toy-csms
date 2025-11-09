@@ -10,7 +10,7 @@ import me.jwjung.common.event.Event;
 import me.jwjung.common.event.EventPayload;
 import me.jwjung.common.event.EventType;
 import me.jwjung.common.event.payload.StartTransactionEventPayload;
-import me.jwjung.common.kafka.producer.KafkaMessagePublisher;
+import me.jwjung.common.event.producer.KafkaMessagePublisher;
 import me.jwjung.common.snowflake.Snowflake;
 import me.jwjung.csms.ocpp.domain.MessageType;
 import me.jwjung.csms.ocpp.domain.OcppMessage;

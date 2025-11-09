@@ -9,7 +9,7 @@ import me.jwjung.common.event.core.EventDispatcher;
 
 @Service
 @RequiredArgsConstructor
-public class SessionService {
+public class BillingService {
 	private final EventDispatcher eventDispatcher;
 
 	public void handleEvent(Event<EventPayload> event) {

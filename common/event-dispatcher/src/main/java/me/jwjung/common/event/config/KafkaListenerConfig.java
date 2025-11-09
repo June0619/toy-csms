@@ -1,4 +1,4 @@
-package me.jwjung.config;
+package me.jwjung.common.event.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -7,7 +7,7 @@ import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.listener.ContainerProperties;
 
 @Configuration
-public class KafkaConfig {
+public class KafkaListenerConfig {
 	@Bean
 	public ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerContainerFactory(
 			ConsumerFactory<String, String> consumerFactory
