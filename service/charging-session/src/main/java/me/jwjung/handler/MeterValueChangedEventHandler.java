@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import me.jwjung.common.event.Event;
 import me.jwjung.common.event.EventType;
 import me.jwjung.common.event.payload.MeterValueChangedEventPayload;
+import me.jwjung.domain.Session;
 import me.jwjung.repository.SessionRepository;
 
 @Slf4j
@@ -18,10 +19,11 @@ public class MeterValueChangedEventHandler implements EventHandler<MeterValueCha
 	@Override
 	public void handle(Event<MeterValueChangedEventPayload> event) {
 		MeterValueChangedEventPayload payload = event.getPayload();
-		sessionRepository.updateMeterValue(
-				payload.getTransactionId(),
-				payload.getMeterValueAmount()
-		);
+		Session session = sessionRepository.findById(payload.getTransactionId())
+				.orElseThrow(() -> new IllegalStateException("Session not found"));
+		session.updateNewMeterValue(payload.getMeterValueAmount());
+		sessionRepository.save(session);
+		log.info("Session updated: {}", session);
 	}
 
 	@Override
