@@ -11,7 +11,7 @@ public class PaymentGateway {
 
 	public void requestPayment(BillingRequest billingRequest) {
 		if (billingRequest.memberUuid().contains("fail")) {
-			throw new RuntimeException("Payment failed for member: " + billingRequest.memberUuid());
+			throw new NotEnoughBalanceException();
 		}
 
 		log.info("[PaymentGateway.requestPayment] memberUuid={}, amount={}",

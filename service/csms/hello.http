@@ -3,9 +3,11 @@ WEBSOCKET ws://localhost:9010/ws
 Content-Type: application/json
 
 [2, "custom-001", "StartTransaction", {
-    "idTag": "member-uuid-001",
+    "idTag": "fail-member-uuid-001",
     "transactionId": "transaction-001"
 }]
+===
+
 ###
 
 #[2, "custom-001", "StartTransaction", {

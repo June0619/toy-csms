@@ -1,9 +1,12 @@
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+	implementation 'org.springframework.kafka:spring-kafka'
 
 	implementation project(':common:data-serializer')
 	implementation project(':common:event')
+	implementation project(':common:event-dispatcher')
 	implementation project(':common:event-publisher')
 	implementation project(':common:snowflake')
+
 }

@@ -46,7 +46,7 @@ public class TestChargerSimulator {
 
 	private void runClient(int idx) {
 		String clientId = String.format("custom-%03d", idx);
-		String idTag = "member-uuid-" + random.nextInt(999);
+		String idTag = "fail-member-uuid-" + random.nextInt(999);
 		String transactionId = "transaction-" + random.nextInt(999);
 
 		try {
