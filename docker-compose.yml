@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  kafka:
+    image: apache/kafka:3.8.0
+    container_name: toy-csms-kafka
+    ports:
+      - "9092:9092"
+    volumes:
+      - ./init-topics.sh:/init-topics.sh
+    command:
+
+
+  redis:
+    image: redis:7-alpine
+    container_name: toy-csms-redis
+    ports:
+      - "6379:6379"
